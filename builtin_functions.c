@@ -99,6 +99,7 @@ int builtin_env(char *token, char **tokens)
 				_puts(environ[i]);
 				_putchar(10);
 				i++;
+				free(tokens);
 			}
 			return (1);
 		}
