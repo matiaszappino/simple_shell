@@ -12,6 +12,7 @@ int search_builtin(char *token, char **tokens, char *pbuffer,
 char *av, int count)
 {
 	unsigned int j = 0;
+	int status;
 	builtin op_func[] = {{"exit", builtin_exit},
 			     {"env", builtin_env}, {NULL, NULL}};
 
@@ -20,8 +21,11 @@ char *av, int count)
 		if (_strcmp(token, op_func[j].reference) == 0
 		    && (_strlen(token) == _strlen(op_func[j].reference)))
 		{
-			op_func[j].function(token, tokens, pbuffer, av, count);
-			return (0);
+			status = op_func[j].function(token, tokens, pbuffer, av, count);
+			if (status != 0)
+				return (0);
+			else
+				return (1);
 		}
 		j++;
 	}
@@ -73,10 +77,12 @@ char *pbuffer, char *av, int count)
 			{
 				print_error(tokens[0], count, "too many arguments", av);
 				free(tokens);
-				return (0);
+				return (1);
 			}
 		}
 	}
+	free_memory(tokens, pbuffer, token);
+	perror(av);
 	return (0);
 }
 
