@@ -82,16 +82,25 @@ char *pbuffer, char *av, int count)
 
 /**
  * builtin_env - prints env builtin function
- * Return: 0
+ * @token: token
+ * @tokens: double pointer to tokens
+ * Return: 1 on success, 0 on error
  */
-int builtin_env(void)
+int builtin_env(char *token, char **tokens)
 {
-	int i = 0;
+	int i = 0, n = 0;
 
-	while (environ[i] != NULL)
-	{
-		puts(environ[i]);
-		i++;
-	}
-	return (0);
+	n = _strlen(token);
+	if (n == 3)
+		if ((_strncmp("env", token, 3)) == 0)
+		{
+			while (environ[i] != NULL)
+			{
+				_puts(environ[i]);
+				_putchar(10);
+				i++;
+			}
+			return (1);
+		}
+		return (0);
 }

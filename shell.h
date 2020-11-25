@@ -33,7 +33,7 @@ int search_builtin(char *token, char **tokens, char *buffer,
 char *av, int count);
 int builtin_exit(char *token, char **tokens, char *buffer,
 char *av, int count);
-int builtin_env(void);
+int builtin_env(char *token, char **tokens);
 void check_dot_slash(char **args, int count, char *path,
 char *av, char *buffer);
 void print_error(char *argv, int count, char *error_name, char *name);

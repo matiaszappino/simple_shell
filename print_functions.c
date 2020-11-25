@@ -30,3 +30,15 @@ int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
+/**
+ * _puts - function to print a string
+ * @str: variable
+ * Return: no return
+ */
+void _puts(char *str)
+{
+	int a = 0;
+
+	for ( ; *(str + a) != '\0' ; a++)
+		_putchar(*(str + a));
+}
