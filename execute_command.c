@@ -10,43 +10,50 @@
  * Return: No return.
  */
 int execute(char *args[], char *av, char **env_var,
-char *path, char *buffer, int count)
+char *path, char *buffer, int count, int check)
 {
 	pid_t pid;
 	int status, outstatus = 0;
-	int flag = 0, stat;
+	char *command;
 
-	pid = fork();
-	if (pid < 0)
-		exit(errno);
-	if (pid == 0)
-	{
-		check_dot_slash(args, count, path, av, buffer);
-		if (execve(args[0], args, env_var) == -1)
+		if (check == 1)
 		{
-			stat = execve(path, args, env_var);
-			if  (stat != -1)
-				flag = 1;
-			if (flag == 1)
-			{
-				print_error(args[0], count, "cannot execute", av);
-				free_memory(args, path, buffer);
-				exit(126);
-			}
-			else
-			{
-				print_error(args[0], count, "command not found", av);
-				free_memory(args, path, buffer);
-				exit(127);
-			}
+			command = path;
+		}	
+		else
+		{
+			command = args[0];
 		}
-	}
+
+		pid = fork();
+		
+		if (pid < 0)
+			exit(errno);
+		if (pid == 0)
+		{
+			if (execve(command, args, env_var) == -1)
+			{
+				print_error(command, count, "cannot execute", av);
+				free_memory(args, path, buffer);
+				exit(126);	
+			}
+		}	
+		else
+		{
+			wait(&status);
+			if (WIFEXITED(status))
+				outstatus = WEXITSTATUS(status);
+		}
+	
+	if (check == 1)
+	{
+		free_memory(args, path, buffer);
+	}	
 	else
 	{
-		wait(&status);
-		if (WIFEXITED(status))
-			outstatus = WEXITSTATUS(status);
+		free(args);
+		free(buffer);
 	}
-	free_memory(args, path, buffer);
+	
 	return (outstatus);
 }

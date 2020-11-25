@@ -8,19 +8,21 @@
  *@buffer: buffer
  */
 
-void check_dot_slash(char **args, int count, char *path,
-char *av, char *buffer)
+int check_dot_slash(char **args, int count, char *av, char *buffer)
 {
 	if (*args[0] == '.' && _strlen(args[0]) == 1)
 	{
 		print_error(args[0], count, "filename argument required", av);
-		free_memory(args, path, buffer);
-		exit(126);
+		free(args);
+		free(buffer);
+		return (1);
 	}
 	if (*args[0] == '/' && _strlen(args[0]) == 1)
 	{
 		print_error(args[0], count, "Is a directory", av);
-		free_memory(args, path, buffer);
-		exit(2);
+		free(args);
+		free(buffer);
+		return (1);
 	}
+	return (0);
 }
