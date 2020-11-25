@@ -15,7 +15,7 @@ char *find_path(char **environ, char **args)
 
 	while (environ[i])
 	{
-		if (_strcmp("PATH=", environ[i]) == 0 && environ[i][4])
+		if (_strcmp("PATH=", environ[i]) == 0)
 		{
 			n = _strlen(environ[i]);
 			path = malloc(sizeof(char) * n - 4);
@@ -25,7 +25,11 @@ char *find_path(char **environ, char **args)
 		}
 		i++;
 	}
-	folder = split_path(path, args);
-	free(path);
-	return (folder);
+	if (path != NULL)
+	{
+		folder = split_path(path, args);
+		free(path);
+		return (folder);
+	}
+	return (NULL);
 }

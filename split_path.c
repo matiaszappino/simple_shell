@@ -22,7 +22,6 @@ char *split_path(char *path, char **args)
 		command = _strcat(command, folder);
 		command = _strcat(command, "/");
 		command = _strcat(command, args[0]);
-
 		if (stat(command, &fileStat) == 0)
 			return (command);
 		folder = strtok(NULL, ":");
