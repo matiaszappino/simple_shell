@@ -41,7 +41,7 @@ int search_builtin(char *token, char **tokens, char *pbuffer,
  * Return: exit
  */
 int builtin_exit(char *token, char **tokens,
-				 char *pbuffer, char *av, int count)
+char *pbuffer, char *av, int count)
 {
 	int n, status, counter = 0;
 	int *pcounter = &counter;
@@ -58,31 +58,30 @@ int builtin_exit(char *token, char **tokens,
 			if (!tokens)
 				return (0);
 			tokens = tokenize(token, tokens, pcounter);
-			
+
 			if (counter == 1 && tokens[1] == NULL)
 			{
-				free(tokens), free(pbuffer), exit(EXIT_SUCCESS);
+				free(tokens);
+				free(pbuffer);
+				exit(EXIT_SUCCESS);
 			}
 			if (counter == 2 && tokens[2] == NULL)
 			{
 				status = _atoi(tokens[1]);
-				if (status <= 255 && status >= 0)
-				{
-					free(tokens), free(pbuffer), exit(status);
-				}
-				else
-				{
-					free(tokens), free(pbuffer), exit(128);
-				}
+				free(tokens);
+				free(pbuffer);
+				exit(status);
 			}
 			else if (counter > 2)
 			{
-				print_error(tokens[0], count, "too many arguments", av), free(tokens);
+				print_error(tokens[0], count, "too many arguments", av);
+				free(tokens);
 				return (1);
 			}
 		}
 	}
-	free_memory(tokens, pbuffer, token), perror(av);
+	free_memory(tokens, pbuffer, token);
+	perror(av);
 	return (0);
 }
 
