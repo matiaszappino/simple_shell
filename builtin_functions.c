@@ -19,7 +19,8 @@ int search_builtin(char *token, char **tokens, char *pbuffer,
 
 	while (op_func[j].reference != NULL)
 	{
-		if (_strcmp(token, op_func[j].reference) == 0 && (_strlen(token) == _strlen(op_func[j].reference)))
+		if (_strcmp(token, op_func[j].reference) == 0 &&
+		    (_strlen(token) == _strlen(op_func[j].reference)))
 		{
 			status = op_func[j].function(token, tokens, pbuffer, av, count);
 			if (status != 0)
