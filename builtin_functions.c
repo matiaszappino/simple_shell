@@ -60,7 +60,7 @@ char *pbuffer, char *av, int count)
 			{
 				free(tokens);
 				free(pbuffer);
-				exit(1);
+				exit(EXIT_SUCCESS);
 			}
 			if (counter == 2 && tokens[2] == NULL)
 			{
