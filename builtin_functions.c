@@ -41,8 +41,14 @@ int builtin_exit(char *token, char **tokens,
 char *pbuffer, char *av, int count)
 {
 	int n, status, i = 0;
-
 	tokens = NULL;
+
+	if (!token)
+		return (0);
+
+	if (!av)
+		return (0);
+
 	n = _strlen(token);
 	if (n == 4)
 	{
@@ -50,7 +56,7 @@ char *pbuffer, char *av, int count)
 		{
 			tokens = malloc(sizeof(char *) * BUFFSIZE);
 			if (!tokens)
-				return (EXIT_FAILURE);
+				return (0);
 			while (token != NULL)
 			{
 				tokens[i] = token;
@@ -82,26 +88,16 @@ char *pbuffer, char *av, int count)
 
 /**
  * builtin_env - prints env builtin function
- * @token: token
- * @tokens: double pointer to tokens
- * Return: 1 on success, 0 on error
+ * Return: 0
  */
-int builtin_env(char *token, char **tokens)
+int builtin_env(void)
 {
-	int i = 0, n = 0;
+	int i = 0;
 
-	n = _strlen(token);
-	if (n == 3)
-		if ((_strncmp("env", token, 3)) == 0)
-		{
-			while (environ[i] != NULL)
-			{
-				_puts(environ[i]);
-				_putchar(10);
-				i++;
-				free(tokens);
-			}
-			return (1);
-		}
-		return (0);
+	while (environ[i] != NULL)
+	{
+		puts(environ[i]);
+		i++;
+	}
+	return (0);
 }
