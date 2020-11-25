@@ -40,6 +40,8 @@ void print_error(char *argv, int count, char *error_name, char *name);
 void free_memory(char **args, char *path, char *av);
 void kill_signal(int sig);
 void _puts(char *str);
+char **tokenize(char *token, char **tokens, int *count);
+
 /**
  *struct builtin - structure of builtins options
  *@reference: character option
