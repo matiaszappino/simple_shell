@@ -15,12 +15,12 @@ char *av, char *buffer)
 	{
 		print_error(args[0], count, "filename argument required", av);
 		free_memory(args, path, buffer);
-		exit(1);
+		exit(126);
 	}
 	if (*args[0] == '/' && _strlen(args[0]) == 1)
 	{
 		print_error(args[0], count, "Is a directory", av);
 		free_memory(args, path, buffer);
-		exit(1);
+		exit(2);
 	}
 }

@@ -9,17 +9,17 @@
  * Return: 1 if token was not found, 0 if command was founded
  */
 int search_builtin(char *token, char **tokens, char *pbuffer,
-char *av, int count)
+				   char *av, int count)
 {
 	unsigned int j = 0;
 	int status;
 	builtin op_func[] = {{"exit", builtin_exit},
-			     {"env", builtin_env}, {NULL, NULL}};
+						 {"env", builtin_env},
+						 {NULL, NULL}};
 
 	while (op_func[j].reference != NULL)
 	{
-		if (_strcmp(token, op_func[j].reference) == 0
-		    && (_strlen(token) == _strlen(op_func[j].reference)))
+		if (_strcmp(token, op_func[j].reference) == 0 && (_strlen(token) == _strlen(op_func[j].reference)))
 		{
 			status = op_func[j].function(token, tokens, pbuffer, av, count);
 			if (status != 0)
@@ -31,7 +31,6 @@ char *av, int count)
 	}
 	return (1);
 }
-
 /**
  * builtin_exit - exit builtin function
  * @token: token
@@ -42,7 +41,7 @@ char *av, int count)
  * Return: exit
  */
 int builtin_exit(char *token, char **tokens,
-char *pbuffer, char *av, int count)
+				 char *pbuffer, char *av, int count)
 {
 	int n, status, counter = 0;
 	int *pcounter = &counter;
@@ -59,30 +58,31 @@ char *pbuffer, char *av, int count)
 			if (!tokens)
 				return (0);
 			tokens = tokenize(token, tokens, pcounter);
-
+			
 			if (counter == 1 && tokens[1] == NULL)
 			{
-				free(tokens);
-				free(pbuffer);
-				exit(EXIT_SUCCESS);
+				free(tokens), free(pbuffer), exit(EXIT_SUCCESS);
 			}
 			if (counter == 2 && tokens[2] == NULL)
 			{
 				status = _atoi(tokens[1]);
-				free(tokens);
-				free(pbuffer);
-				exit(status);
+				if (status <= 255 && status >= 0)
+				{
+					free(tokens), free(pbuffer), exit(status);
+				}
+				else
+				{
+					free(tokens), free(pbuffer), exit(128);
+				}
 			}
 			else if (counter > 2)
 			{
-				print_error(tokens[0], count, "too many arguments", av);
-				free(tokens);
+				print_error(tokens[0], count, "too many arguments", av), free(tokens);
 				return (1);
 			}
 		}
 	}
-	free_memory(tokens, pbuffer, token);
-	perror(av);
+	free_memory(tokens, pbuffer, token), perror(av);
 	return (0);
 }
 
@@ -109,5 +109,5 @@ int builtin_env(char *token, char **tokens)
 			}
 			return (1);
 		}
-		return (0);
+	return (0);
 }

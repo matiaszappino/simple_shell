@@ -31,7 +31,7 @@ char *path, char *buffer, int count)
 			{
 				print_error(args[0], count, "cannot execute", av);
 				free_memory(args, path, buffer);
-				exit(127);
+				exit(126);
 			}
 			else
 			{
