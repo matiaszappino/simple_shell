@@ -134,8 +134,8 @@ echo "/bin/ls" | ./hsh
 ```
 *Output*
 ```
-example.c   example.c  example.c        file     man_1_simple_shell  example.c  README.md 
-AUTHORS  example.c      example.c  example.c  example.c      readline.c         shell.h 
+example.c   example.c  example.c        file     man_1_simple_shell  example.c  README.md
+AUTHORS  example.c      example.c  example.c  example.c      readline.c         shell.h
 ```
 <hr>
 
@@ -152,8 +152,8 @@ Then the prompt appears, so you can type in the command line, and press return
 
 *Output*
 ```
-example.c   example.c  example.c        file     man_1_simple_shell  example.c  README.md 
-AUTHORS  example.c      example.c  example.c  example.c      readline.c         shell.h  
+example.c   example.c  example.c        file     man_1_simple_shell  example.c  README.md
+AUTHORS  example.c      example.c  example.c  example.c      readline.c         shell.h
 ```
 <p align="center"> AUTHORS </p>
 <p align="center">
