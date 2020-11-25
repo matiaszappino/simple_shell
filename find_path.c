@@ -22,6 +22,8 @@ char *find_path(char **environ, char **args)
 			if (!path)
 				return (NULL);
 			path = _strcpy(path, (environ[i] + 5));
+			if (environ[i] + 6 == NULL)
+				return (NULL);
 		}
 		i++;
 	}
