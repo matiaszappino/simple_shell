@@ -6,7 +6,6 @@
  * @path: path of the program.
  * @av: command
  * @buffer: buffer
- * @count: history count
  * @check: if args[0] or path will be used
 * Return: No return.
  */
