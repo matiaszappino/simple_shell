@@ -40,7 +40,7 @@ void free_memory(char **args, char *path, char *av);
 void kill_signal(int sig);
 void _puts(char *str);
 char **tokenize(char *token, char **tokens, int *count);
-int check_path(char ** args);
+int check_path(char **args);
 
 /**
  *struct builtin - structure of builtins options

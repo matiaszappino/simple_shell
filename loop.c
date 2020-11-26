@@ -6,12 +6,11 @@
 #include "shell.h"
 int loop(char *av)
 {
-	char *buffer = NULL;
+	char *buffer = NULL, *strPath = NULL;
 	char **args = NULL;
-	int num_of_tokens = 0, check;
+	int num_of_tokens = 0, check, status = 1, process = 0,
+	count = 1, dot_slash_status;
 	int *num = &num_of_tokens;
-	char *strPath = NULL;
-	int status = 1, process = 0, count = 1, dot_slash_status;
 
 	while (status)
 	{
@@ -26,8 +25,7 @@ int loop(char *av)
 		args = split_buffer(buffer, num, count, av);
 		if (args == NULL)
 		{
-			free(buffer);
-			free(args);
+			free(buffer), free(args);
 			continue;
 		}
 		dot_slash_status = check_dot_slash(args, count, av, buffer);
@@ -45,8 +43,7 @@ int loop(char *av)
 			}
 		}
 		process = execute(args, av, environ, strPath, buffer, count, check);
-		count++;
-		check = 0;
+		count++, check = 0;
 	}
 	return (process);
 }

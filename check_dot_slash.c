@@ -3,9 +3,9 @@
  *check_dot_slash - ckecks in command for dot ands slash only
  *@args: arguments vector
  *@count: history counter
- *@path: path of command
  *@av: name of program
  *@buffer: buffer
+ *Return: 1 if success, 0 if not
  */
 
 int check_dot_slash(char **args, int count, char *av, char *buffer)
