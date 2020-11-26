@@ -37,7 +37,8 @@ int loop(char *av)
 			strPath = find_path(environ, args);
 			if (strPath == NULL)
 			{
-				print_error(args[0], count, "command not found", av);
+				perror(args[0]);
+				/*print_error(args[0], count, "command not found", av);*/
 				free_memory(args, strPath, buffer);
 				exit(127);
 			}
