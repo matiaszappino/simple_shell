@@ -13,7 +13,7 @@ A simple UNIX command interpreter written as part of the low-level programming a
 
 #### Requirements
  - Gcc >= 4.8.4
- - Linux
+ - Linux SO
 
 #### Steps to compile and execute.
  - `git clone https://github.com/gdorelo/simple_shell.git`
