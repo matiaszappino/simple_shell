@@ -28,7 +28,8 @@ char *path, char *buffer, int count, int check)
 	{
 		if (execve(command, args, env_var) == -1)
 		{
-			print_error(command, count, "cannot execute", av);
+			/*print_error(command, count, "cannot execute", av);*/
+			perror(av);
 			free_memory(args, path, buffer);
 			exit(126);
 		}

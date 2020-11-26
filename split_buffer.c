@@ -12,9 +12,9 @@ char **split_buffer(char *pbuffer, int *num, int count, char *av)
 	char *token = NULL;
 	unsigned int i = 0;
 	char **tokens = NULL;
+	char *buffer2;
 
 	token = strtok(pbuffer, " ");
-
 	if (search_builtin(token, tokens, pbuffer, av, count) != 0)
 	{
 		tokens = malloc(sizeof(char *) * BUFFSIZE);

@@ -38,7 +38,6 @@ int loop(char *av)
 			if (strPath == NULL)
 			{
 				perror(args[0]);
-				/*print_error(args[0], count, "command not found", av);*/
 				free_memory(args, strPath, buffer);
 				exit(127);
 			}
