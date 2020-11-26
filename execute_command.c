@@ -11,7 +11,7 @@
 * Return: No return.
  */
 int execute(char *args[], char *av, char **env_var,
-char *path, char *buffer, int count, int check)
+char *path, char *buffer, int check)
 {
 	pid_t pid;
 	int status, outstatus = 0;

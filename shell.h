@@ -19,7 +19,7 @@ char *checkspaces(char *buffer);
 int _atoi(char *s);
 char **split_buffer(char *pbuffer, int *num, int count, char *av);
 int execute(char **args, char *av, char **env_var,
-char *path, char *buffer, int count, int check);
+char *path, char *buffer, int check);
 char *find_path(char **environ, char **args);
 char *split_path(char *path, char **args);
 int _strcmp(char *s1, char *s2);

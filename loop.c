@@ -42,7 +42,7 @@ int loop(char *av)
 				exit(127);
 			}
 		}
-		process = execute(args, av, environ, strPath, buffer, count, check);
+		process = execute(args, av, environ, strPath, buffer, check);
 		count++, check = 0;
 	}
 	return (process);
