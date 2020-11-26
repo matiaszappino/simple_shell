@@ -1,0 +1,98 @@
+.TH man_1_simple_shell  "November 2020"
+
+.SH NAME
+simple_shell - Holberton School Simple Shell
+
+-SH PROLOG
+.PP
+A shell program is an application that allows interacting with the computer. In a shell the user can run programs and also redirect the input and output from and to a file.
+
+.SH SYNOPSIS
+.B simple_shell format [[command line][argumment...]]...
+
+
+.SH DESCRIPTION
+.PP
+Our Shell is a simple UNIX command language interpreter that reads commands from either a file or standard input and executes them.
+
+.SS Invocation
+.PP
+Our Shell can be invoked both interactively and non-interactively.
+If it is invoked with standard input not connected to a terminal, it reads and executes received commands in order.
+
+.SS Commands
+.PP
+The shell interprets the words it reads according to a language, the specification of which is outside the scope of this man page (refer to the BNF in the POSIX 1003.2 document). Essentially though, a line is read and if the first word of the line (or after a control operator)is not a reserved word, then the shell has recognized a simple command.  Otherwise, a complex command or some other special construct may have been recognized.
+
+.SS Simple Commands
+.PP
+If a simple command has been recognized, the shell perfoms the following actions:
+
+.RS
+.ns
+1.      Leading words of the form “name=value” are stripped off and assigned to the    environment of the simple command.
+
+2.      The remaining words are expanded as described in the section called “Expansions”, and the first remaining word is considered the command name and the command islocated. The remaining words are considered the arguments of the command.  If nocommand name resulted, then the “name=value” variable assignments recognized in item 1affect the current shell.
+.RE
+
+.SS Path Search
+.PP
+When locating a command, the shell first looks to see if it has a shell function by that name.Then it looks for a builtin command by that name.  If a builtin command is not found,one of two things happen:
+
+.RS
+.ns
+1.      Command names containing a slash are simply executed without performing any searches.
+
+2.      The shell searches each entry in PATH in turn for the command.  The value of the PATH variable should be a series of entries separated by colons.  Each entry consists of a directory name. The current directory may be indicated implicitly by an empty directory name, or explicitly by a single period.
+.RE
+
+.SS Command  Exit Status
+.PP
+Each command has an exit status that can influence the behaviour of other shell commands.  The paradigm is that a command exits with zero for normal or success, and non-zero for failure, error, or a false indication.  The man page for each command should indicate the various exit codes and what they mean.  Additionally, the built-in commands returns exit codes, as does an executed shell function.
+
+If a command consists entirely of variable assignments then the exit status of thecommand is that of the last command substitution if any, otherwise 0.
+
+Errors that are detected by the shell, such as a syntax error, will cause the shell to exit with a non-zero exit status.  If the shell is not an interactive shell, the execution of the shell file will be aborted.  Otherwise the shell will return the exit status of the lastcommand executed, or if the exit builtin is used with a numeric argument, it will return the argument.
+
+.SS ENVIRONMENT
+.RS
+.ns
+        PATH    The default search path for executables.  See the above section Path Search.
+..RE
+
+
+.SH EXAMPLES
+.RS
+.SS In interactive mode
+.B
+ $ ./hsh
+ #cisfun$ ls
+ hsh main.c shell.c
+ #cisfun$
+.SS In non-interactive mode
+.B
+ $ echo "/bin/ls" | ./hsh
+ hsh main.c shell.c
+ $ echo "/bin/ls -a" | ./hsh
+ . .. hsh main.c shell.c
+ $
+
+.SH SEE ALSO
+http://1.droppdf.com/files/87BCs/the-linux-programming-interface.pdf
+Linux programming interface, Michael Kerrisk.
+
+https://www.cypress.com/file/54761/download
+C language programming (second edition), Dennis Ritchie
+
+.SH BUGS
+If you find an issue or bug please report it to the AUTHORS
+
+.SH AUTHORS
+
+.br
+Matias Zappino,
+.B 1794@holbertonschool.com
+
+.br
+Martin Saavedra,
+.B 2089@holbertonschool.com
