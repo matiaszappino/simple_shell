@@ -59,26 +59,33 @@ char *pbuffer, char *av, int count)
 			if (!tokens)
 				return (0);
 			tokens = tokenize(token, tokens, pcounter);
-
+			
 			if (counter == 1 && tokens[1] == NULL)
 			{
 				free(tokens);
 				free(pbuffer);
 				exit(EXIT_SUCCESS);
 			}
-			if (counter == 2 && tokens[2] == NULL)
+			if (counter == 2 && tokens[2] == NULL && _atoi(tokens[1]) >= 0)
 			{
 				status = _atoi(tokens[1]);
 				free(tokens);
 				free(pbuffer);
 				exit(status);
 			}
-			else if (counter > 2)
+			if (counter == 2 && _atoi(tokens[1]) < 0)
+			{
+				print_error2(tokens[0], count, "Illegal number: ", tokens[1], av);
+				free(tokens);
+				return (1);
+			}
+			if (counter > 2)
 			{
 				print_error(tokens[0], count, "too many arguments", av);
 				free(tokens);
 				return (1);
 			}
+			
 		}
 	}
 	free_memory(tokens, pbuffer, token);

@@ -7,6 +7,6 @@
 void kill_signal(int sig)
 {
 	(void)sig;
-	signal(SIGINT, kill_signal);
+	/*signal(SIGINT, kill_signal);*/
 	write(STDIN_FILENO, "\n$ ", 3);
 }

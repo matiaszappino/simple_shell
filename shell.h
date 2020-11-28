@@ -9,6 +9,7 @@
 #include <sys/wait.h>
 #include <errno.h>
 #include <signal.h>
+#include <ctype.h>
 #define BUFFSIZE 1024
 
 extern char **environ;
@@ -36,6 +37,7 @@ char *av, int count);
 int builtin_env(char *token, char **tokens);
 int check_dot_slash(char **args, int count, char *av, char *buffer);
 void print_error(char *argv, int count, char *error_name, char *name);
+void print_error2(char *argv, int count, char *error_name, char* num, char *name);
 void free_memory(char **args, char *path, char *av);
 void kill_signal(int sig);
 void _puts(char *str);

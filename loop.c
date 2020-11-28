@@ -15,7 +15,7 @@ int loop(char *av)
 	while (status)
 	{
 		if (isatty(STDIN_FILENO))
-		prompt();
+			prompt();
 		buffer = save_buffer();
 		if (buffer == NULL)
 			continue;
@@ -39,7 +39,8 @@ int loop(char *av)
 			{
 				perror(args[0]);
 				free_memory(args, strPath, buffer);
-				exit(127);
+				continue;
+				/*exit(127);*/
 			}
 		}
 		process = execute(args, av, environ, strPath, buffer, check);

@@ -11,7 +11,11 @@ char *find_path(char **environ, char **args)
 	char *path = NULL, *folder = NULL;
 
 	if (!environ[i])
+	{
+		perror(args[0]);
 		return (NULL);
+	}
+		
 
 	while (environ[i])
 	{
