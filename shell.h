@@ -43,6 +43,10 @@ void kill_signal(int sig);
 void _puts(char *str);
 char **tokenize(char *token, char **tokens, int *count);
 int check_path(char **args);
+int builtin_help(char *token, char **tokens);
+void help_Exit(void);
+void help_Env(void);
+void help_Help(void);
 
 /**
  *struct builtin - structure of builtins options

@@ -37,7 +37,7 @@ int loop(char *av)
 			strPath = find_path(environ, args);
 			if (strPath == NULL)
 			{
-				perror(args[0]);
+				perror(av);
 				free_memory(args, strPath, buffer);
 				continue;
 				/*exit(127);*/

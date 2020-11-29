@@ -13,5 +13,7 @@ int check_path(char **args)
 		return (0);
 	}
 	else
+	{
 		return (1);
+	}
 }
