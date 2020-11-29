@@ -31,3 +31,4 @@ void print_error2(char *argv, int count, char *error_name, char* num, char *name
 	write(STDERR_FILENO, num, _strlen(num));
 	write(STDERR_FILENO, "\n", 1);
 }
+
